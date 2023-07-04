@@ -1,0 +1,38 @@
+<div mat-dialog-title>
+    <h1>Agregar Persona</h1>
+  </div>
+  <form [formGroup]="UsuarioForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" placeholder="Ex. Yael" formControlName="nombre">
+          <mat-error *ngIf="UsuarioForm.controls['nombre']?.invalid && UsuarioForm.controls['nombre']?.touched">
+            Nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Paterno</mat-label>
+          <input matInput placeholder="Ex. Merida" formControlName="apellidoPaterno">
+          <mat-error *ngIf="UsuarioForm?.get('apellidoPaterno')?.invalid && UsuarioForm?.get('apellidoPaterno')?.touched">
+            Apellido Paterno es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Materno</mat-label>
+          <input matInput placeholder="Ex. Morales" formControlName="apellidoMaterno">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Identificación</mat-label>
+          <input matInput placeholder="Ex. 132040" formControlName="identificacion">
+          <mat-error *ngIf="UsuarioForm?.get('identificacion')?.invalid && UsuarioForm?.get('identificacion')?.touched">
+            Identificación es obligatoria.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Actualizar': 'Guardar'}}</button>
+    </div>
+  </form>

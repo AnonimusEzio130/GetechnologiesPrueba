@@ -1,0 +1,36 @@
+<div mat-dialog-title>
+  <h1>Facturas de la persona {{idUsuario}}</h1>
+  <h1>Facturas:</h1>
+  <div class="table-container">
+    <table mat-table [dataSource]="datasourceFactura" matSort>
+      <!-- Columna ID -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+      <!-- Columna Fecha -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+        <td mat-cell *matCellDef="let row"> {{formatFecha(row.fecha)}}</td>
+      </ng-container>
+      <!-- Columna Monto -->
+      <ng-container matColumnDef="monto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
+        <td mat-cell *matCellDef="let row"> {{row.monto | currency}}</td>
+      </ng-container>
+      <!-- Columna Monto -->
+      <ng-container matColumnDef="accion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Acción </th>
+        <td td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="warn" (click)="deleteFactura(row.id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>  
+      </td>    
+      </ng-container>
+      <!-- Definición de columnas -->
+      <tr mat-header-row *matHeaderRowDef="FacturadisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: FacturadisplayedColumns;"></tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5]" aria-label="Select page of users"></mat-paginator>
+</div>
